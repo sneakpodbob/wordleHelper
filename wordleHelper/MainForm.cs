@@ -14,7 +14,7 @@ namespace wordleHelper
         {
             listBox.Items.Clear();
             // ReSharper disable once CoVariantArrayConversion
-            listBox.Items.AddRange(items: Evaluator.Evaluate().ToArray());
+            listBox.Items.AddRange(items: Evaluator.Evaluate(ChkSort.Checked).ToArray());
         }
 
         private void HandleDoubleClick(object sender, EventArgs e)
@@ -106,6 +106,11 @@ namespace wordleHelper
 
             var textBoxs = Controls.OfType<TextBox>().ToList();
             return textBoxs.First(tb => tb.Name == $"txt{nextLine}_{nextRow}");
+        }
+
+        private void ChkSort_CheckedChanged(object sender, EventArgs e)
+        {
+            btnEval_Click(sender, e);
         }
     }
 }

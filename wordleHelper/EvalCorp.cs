@@ -5,7 +5,7 @@
         private readonly List<char> _availables = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray().ToList();
         private readonly Field _field = new();
 
-        public List<string> Evaluate()
+        public List<string> Evaluate(bool sort)
         {
             var list = Wordlist.CreateInstance();
 
@@ -63,12 +63,13 @@
                 return ret;
             }
 
-            return list.AsParallel().AsOrdered()
+            var returnList = list.AsParallel().AsOrdered()
                 .Where(PredAvailChars)
                 .Where(PredMustContainChars)
                 .Where(PredMustPos)
-                .Where(PredCannotPos)
-                .ToList();
+                .Where(PredCannotPos);
+
+            return sort ? returnList.OrderByDescending(GetSortPointsForWord).ToList() : returnList.ToList();
         }
 
         public void SetConditionGreen(byte line, byte row)
@@ -94,6 +95,45 @@
         public void SetChar(char? c, byte line, byte row)
         {
             _field.SetChar(c, line, row);
+        }
+
+        private static decimal GetSortPointsForWord(string word)
+        {
+            var pointsDict = new Dictionary<char, decimal>
+            {
+                { 'e', 11.16m },
+                { 'a', 8.45m },
+                { 'r', 7.58m },
+                { 'i', 7.54m },
+                { 'o', 7.16m },
+                { 't', 6.95m },
+                { 'n', 6.65m },
+                { 's', 5.74m },
+                { 'l', 5.49m },
+                { 'c', 4.54m },
+                { 'u', 3.63m },
+                { 'd', 3.38m }
+            };
+
+            var points = 0m;
+            var seen = new List<char>();
+            
+            foreach (var c in word.ToCharArray())
+            {
+                // Strafpunkte für dopplte Buchstaben
+                if (seen.Contains(c))
+                {
+                    points -= 8;
+                }
+                seen.Add(c);
+
+                if (!pointsDict.ContainsKey(c)) continue;
+
+                points += pointsDict[c];
+                pointsDict.Remove(c);
+            }
+
+            return points;
         }
     }
 }
