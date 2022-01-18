@@ -65,8 +65,8 @@
             this.txt1_1.Name = "txt1_1";
             this.txt1_1.Size = new System.Drawing.Size(42, 63);
             this.txt1_1.TabIndex = 0;
-            this.txt1_1.TextChanged += new System.EventHandler(this.txt1_1_TextChanged);
-            this.txt1_1.DoubleClick += new System.EventHandler(this.txt1_1_DoubleClick);
+            this.txt1_1.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt1_1.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt1_2
             // 
@@ -76,8 +76,8 @@
             this.txt1_2.Name = "txt1_2";
             this.txt1_2.Size = new System.Drawing.Size(42, 63);
             this.txt1_2.TabIndex = 1;
-            this.txt1_2.TextChanged += new System.EventHandler(this.txt1_2_TextChanged);
-            this.txt1_2.DoubleClick += new System.EventHandler(this.txt1_2_DoubleClick);
+            this.txt1_2.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt1_2.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt1_3
             // 
@@ -87,8 +87,8 @@
             this.txt1_3.Name = "txt1_3";
             this.txt1_3.Size = new System.Drawing.Size(42, 63);
             this.txt1_3.TabIndex = 2;
-            this.txt1_3.TextChanged += new System.EventHandler(this.txt1_3_TextChanged);
-            this.txt1_3.DoubleClick += new System.EventHandler(this.txt1_3_DoubleClick);
+            this.txt1_3.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt1_3.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt1_4
             // 
@@ -98,8 +98,8 @@
             this.txt1_4.Name = "txt1_4";
             this.txt1_4.Size = new System.Drawing.Size(42, 63);
             this.txt1_4.TabIndex = 3;
-            this.txt1_4.TextChanged += new System.EventHandler(this.txt1_4_TextChanged);
-            this.txt1_4.DoubleClick += new System.EventHandler(this.txt1_4_DoubleClick);
+            this.txt1_4.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt1_4.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt1_5
             // 
@@ -109,8 +109,8 @@
             this.txt1_5.Name = "txt1_5";
             this.txt1_5.Size = new System.Drawing.Size(42, 63);
             this.txt1_5.TabIndex = 4;
-            this.txt1_5.TextChanged += new System.EventHandler(this.txt1_5_TextChanged);
-            this.txt1_5.DoubleClick += new System.EventHandler(this.txt1_5_DoubleClick);
+            this.txt1_5.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt1_5.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt2_5
             // 
@@ -120,8 +120,8 @@
             this.txt2_5.Name = "txt2_5";
             this.txt2_5.Size = new System.Drawing.Size(42, 63);
             this.txt2_5.TabIndex = 9;
-            this.txt2_5.TextChanged += new System.EventHandler(this.txt2_5_TextChanged);
-            this.txt2_5.DoubleClick += new System.EventHandler(this.txt2_5_DoubleClick);
+            this.txt2_5.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt2_5.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt2_4
             // 
@@ -131,8 +131,8 @@
             this.txt2_4.Name = "txt2_4";
             this.txt2_4.Size = new System.Drawing.Size(42, 63);
             this.txt2_4.TabIndex = 8;
-            this.txt2_4.TextChanged += new System.EventHandler(this.txt2_4_TextChanged);
-            this.txt2_4.DoubleClick += new System.EventHandler(this.txt2_4_DoubleClick);
+            this.txt2_4.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt2_4.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt2_3
             // 
@@ -142,8 +142,8 @@
             this.txt2_3.Name = "txt2_3";
             this.txt2_3.Size = new System.Drawing.Size(42, 63);
             this.txt2_3.TabIndex = 7;
-            this.txt2_3.TextChanged += new System.EventHandler(this.txt2_3_TextChanged);
-            this.txt2_3.DoubleClick += new System.EventHandler(this.txt2_3_DoubleClick);
+            this.txt2_3.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt2_3.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt2_2
             // 
@@ -153,8 +153,8 @@
             this.txt2_2.Name = "txt2_2";
             this.txt2_2.Size = new System.Drawing.Size(42, 63);
             this.txt2_2.TabIndex = 6;
-            this.txt2_2.TextChanged += new System.EventHandler(this.txt2_2_TextChanged);
-            this.txt2_2.DoubleClick += new System.EventHandler(this.txt2_2_DoubleClick);
+            this.txt2_2.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt2_2.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt2_1
             // 
@@ -164,8 +164,8 @@
             this.txt2_1.Name = "txt2_1";
             this.txt2_1.Size = new System.Drawing.Size(42, 63);
             this.txt2_1.TabIndex = 5;
-            this.txt2_1.TextChanged += new System.EventHandler(this.txt2_1_TextChanged);
-            this.txt2_1.DoubleClick += new System.EventHandler(this.txt2_1_DoubleClick);
+            this.txt2_1.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt2_1.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt3_5
             // 
@@ -175,8 +175,8 @@
             this.txt3_5.Name = "txt3_5";
             this.txt3_5.Size = new System.Drawing.Size(42, 63);
             this.txt3_5.TabIndex = 14;
-            this.txt3_5.TextChanged += new System.EventHandler(this.txt3_5_TextChanged);
-            this.txt3_5.DoubleClick += new System.EventHandler(this.txt3_5_DoubleClick);
+            this.txt3_5.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt3_5.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt3_4
             // 
@@ -186,8 +186,8 @@
             this.txt3_4.Name = "txt3_4";
             this.txt3_4.Size = new System.Drawing.Size(42, 63);
             this.txt3_4.TabIndex = 13;
-            this.txt3_4.TextChanged += new System.EventHandler(this.txt3_4_TextChanged);
-            this.txt3_4.DoubleClick += new System.EventHandler(this.txt3_4_DoubleClick);
+            this.txt3_4.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt3_4.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt3_3
             // 
@@ -197,8 +197,8 @@
             this.txt3_3.Name = "txt3_3";
             this.txt3_3.Size = new System.Drawing.Size(42, 63);
             this.txt3_3.TabIndex = 12;
-            this.txt3_3.TextChanged += new System.EventHandler(this.txt3_3_TextChanged);
-            this.txt3_3.DoubleClick += new System.EventHandler(this.txt3_3_DoubleClick);
+            this.txt3_3.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt3_3.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt3_2
             // 
@@ -208,8 +208,8 @@
             this.txt3_2.Name = "txt3_2";
             this.txt3_2.Size = new System.Drawing.Size(42, 63);
             this.txt3_2.TabIndex = 11;
-            this.txt3_2.TextChanged += new System.EventHandler(this.txt3_2_TextChanged);
-            this.txt3_2.DoubleClick += new System.EventHandler(this.txt3_2_DoubleClick);
+            this.txt3_2.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt3_2.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt3_1
             // 
@@ -219,8 +219,8 @@
             this.txt3_1.Name = "txt3_1";
             this.txt3_1.Size = new System.Drawing.Size(42, 63);
             this.txt3_1.TabIndex = 10;
-            this.txt3_1.TextChanged += new System.EventHandler(this.txt3_1_TextChanged);
-            this.txt3_1.DoubleClick += new System.EventHandler(this.txt3_1_DoubleClick);
+            this.txt3_1.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt3_1.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt4_5
             // 
@@ -230,8 +230,8 @@
             this.txt4_5.Name = "txt4_5";
             this.txt4_5.Size = new System.Drawing.Size(42, 63);
             this.txt4_5.TabIndex = 19;
-            this.txt4_5.TextChanged += new System.EventHandler(this.txt4_5_TextChanged);
-            this.txt4_5.DoubleClick += new System.EventHandler(this.txt4_5_DoubleClick);
+            this.txt4_5.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt4_5.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt4_4
             // 
@@ -241,8 +241,8 @@
             this.txt4_4.Name = "txt4_4";
             this.txt4_4.Size = new System.Drawing.Size(42, 63);
             this.txt4_4.TabIndex = 18;
-            this.txt4_4.TextChanged += new System.EventHandler(this.txt4_4_TextChanged);
-            this.txt4_4.DoubleClick += new System.EventHandler(this.txt4_4_DoubleClick);
+            this.txt4_4.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt4_4.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt4_3
             // 
@@ -252,8 +252,8 @@
             this.txt4_3.Name = "txt4_3";
             this.txt4_3.Size = new System.Drawing.Size(42, 63);
             this.txt4_3.TabIndex = 17;
-            this.txt4_3.TextChanged += new System.EventHandler(this.txt4_3_TextChanged);
-            this.txt4_3.DoubleClick += new System.EventHandler(this.txt4_3_DoubleClick);
+            this.txt4_3.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt4_3.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt4_2
             // 
@@ -263,8 +263,8 @@
             this.txt4_2.Name = "txt4_2";
             this.txt4_2.Size = new System.Drawing.Size(42, 63);
             this.txt4_2.TabIndex = 16;
-            this.txt4_2.TextChanged += new System.EventHandler(this.txt4_2_TextChanged);
-            this.txt4_2.DoubleClick += new System.EventHandler(this.txt4_2_DoubleClick);
+            this.txt4_2.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt4_2.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt4_1
             // 
@@ -274,8 +274,8 @@
             this.txt4_1.Name = "txt4_1";
             this.txt4_1.Size = new System.Drawing.Size(42, 63);
             this.txt4_1.TabIndex = 15;
-            this.txt4_1.TextChanged += new System.EventHandler(this.txt4_1_TextChanged);
-            this.txt4_1.DoubleClick += new System.EventHandler(this.txt4_1_DoubleClick);
+            this.txt4_1.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt4_1.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt5_5
             // 
@@ -285,8 +285,8 @@
             this.txt5_5.Name = "txt5_5";
             this.txt5_5.Size = new System.Drawing.Size(42, 63);
             this.txt5_5.TabIndex = 24;
-            this.txt5_5.TextChanged += new System.EventHandler(this.txt5_5_TextChanged);
-            this.txt5_5.DoubleClick += new System.EventHandler(this.txt5_5_DoubleClick);
+            this.txt5_5.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt5_5.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt5_4
             // 
@@ -296,8 +296,8 @@
             this.txt5_4.Name = "txt5_4";
             this.txt5_4.Size = new System.Drawing.Size(42, 63);
             this.txt5_4.TabIndex = 23;
-            this.txt5_4.TextChanged += new System.EventHandler(this.txt5_4_TextChanged);
-            this.txt5_4.DoubleClick += new System.EventHandler(this.txt5_4_DoubleClick);
+            this.txt5_4.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt5_4.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt5_3
             // 
@@ -307,8 +307,8 @@
             this.txt5_3.Name = "txt5_3";
             this.txt5_3.Size = new System.Drawing.Size(42, 63);
             this.txt5_3.TabIndex = 22;
-            this.txt5_3.TextChanged += new System.EventHandler(this.txt5_3_TextChanged);
-            this.txt5_3.DoubleClick += new System.EventHandler(this.txt5_3_DoubleClick);
+            this.txt5_3.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt5_3.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt5_2
             // 
@@ -318,8 +318,8 @@
             this.txt5_2.Name = "txt5_2";
             this.txt5_2.Size = new System.Drawing.Size(42, 63);
             this.txt5_2.TabIndex = 21;
-            this.txt5_2.TextChanged += new System.EventHandler(this.txt5_2_TextChanged);
-            this.txt5_2.DoubleClick += new System.EventHandler(this.txt5_2_DoubleClick);
+            this.txt5_2.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt5_2.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // txt5_1
             // 
@@ -329,8 +329,8 @@
             this.txt5_1.Name = "txt5_1";
             this.txt5_1.Size = new System.Drawing.Size(42, 63);
             this.txt5_1.TabIndex = 20;
-            this.txt5_1.TextChanged += new System.EventHandler(this.txt5_1_TextChanged);
-            this.txt5_1.DoubleClick += new System.EventHandler(this.txt5_1_DoubleClick);
+            this.txt5_1.TextChanged += new System.EventHandler(this.HandleTextChanged);
+            this.txt5_1.DoubleClick += new System.EventHandler(this.HandleDoubleClick);
             // 
             // btnEval
             // 
