@@ -12,16 +12,27 @@
             // Apply all sorts of filters here.
 
             // available chars 
-            var unavailableChars = _field.GetUnavailableChars();
-            var availableChars = _availables.Where(c => !unavailableChars.Contains(c));
-            bool PredAvailChars(string c) => c.ToCharArray().All(value => availableChars.Contains(value));
+            var unavailableChars = _field.GetUnavailableChars().ToList();
             
             // mustcontains
             var mustcontains = _field.GetMustContains();
-            bool PredMustContainChars(string word) => mustcontains.Length == 0 || mustcontains.All(must => word.ToCharArray().Contains(must));
-
+            
             // must pos
             var mustPos = _field.GetMustPos();
+
+            // cannot pos
+            var cannotPos = _field.GetCannotPos();
+
+            for (var i = unavailableChars.Count - 1; i >= 0; i--)
+            {
+                if (mustPos.Exists(pos => pos.c == unavailableChars[i]))
+                {
+                    unavailableChars.RemoveAt(i);
+                }
+            }
+
+            var availableChars = _availables.Where(c => !unavailableChars.Contains(c));
+
             bool PredMustPos(string word)
             {
                 if (mustPos.Count == 0) return true;
@@ -34,9 +45,11 @@
 
                 return ret;
             }
+            
+            bool PredAvailChars(string c) => c.ToCharArray().All(value => availableChars.Contains(value));
+            
+            bool PredMustContainChars(string word) => mustcontains.Length == 0 || mustcontains.All(must => word.ToCharArray().Contains(must));
 
-            // cannot pos
-            var cannotPos = _field.GetCannotPos();
             bool PredCannotPos(string word)
             {
                 if (cannotPos.Count == 0) return true;

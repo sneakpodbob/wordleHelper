@@ -36,14 +36,22 @@ internal class Line
         return retVal.AsEnumerable();
     }
 
-    public IEnumerable<(byte pos, char c)> GetCannotPos()
+    public IEnumerable<(byte pos, char c)> GetCannotPos(List<(byte pos, char c)> mustPosForLine)
     {
+        var mustPosChars = mustPosForLine.Select(mp => mp.c).ToList();
         var retVal = new HashSet<(byte pos, char c)>();
         if (F1 is FieldColor.Yellow && C1 is not null) retVal.Add((0, char.ToLower(C1.Value)));
         if (F2 is FieldColor.Yellow && C2 is not null) retVal.Add((1, char.ToLower(C2.Value)));
         if (F3 is FieldColor.Yellow && C3 is not null) retVal.Add((2, char.ToLower(C3.Value)));
         if (F4 is FieldColor.Yellow && C4 is not null) retVal.Add((3, char.ToLower(C4.Value)));
         if (F5 is FieldColor.Yellow && C5 is not null) retVal.Add((4, char.ToLower(C5.Value)));
+
+        if (F1 is FieldColor.Gray && C1 is not null && mustPosChars.Contains(char.ToLower(C1.Value))) retVal.Add((0, char.ToLower(C1.Value)));
+        if (F2 is FieldColor.Gray && C2 is not null && mustPosChars.Contains(char.ToLower(C2.Value))) retVal.Add((1, char.ToLower(C2.Value)));
+        if (F3 is FieldColor.Gray && C3 is not null && mustPosChars.Contains(char.ToLower(C3.Value))) retVal.Add((2, char.ToLower(C3.Value)));
+        if (F4 is FieldColor.Gray && C4 is not null && mustPosChars.Contains(char.ToLower(C4.Value))) retVal.Add((3, char.ToLower(C4.Value)));
+        if (F5 is FieldColor.Gray && C5 is not null && mustPosChars.Contains(char.ToLower(C5.Value))) retVal.Add((4, char.ToLower(C5.Value)));
+
         return retVal.AsEnumerable();
     }
 
