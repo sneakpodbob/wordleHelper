@@ -1,10 +1,8 @@
-﻿using System.Net.Http.Headers;
-
-namespace wordleHelper;
+﻿namespace wordleHelper;
 
 internal class Field
 {
-    private readonly Line[] _lines = { new Line(), new Line(), new Line(), new Line(), new Line() };
+    private readonly Line[] _lines = { new(), new(), new(), new(), new() };
 
     public void SetChar(char? c, byte line, byte row)
     {
@@ -24,8 +22,6 @@ internal class Field
                 break;
             case 5:
                 _lines[line - 1].C5 = c;
-                break;
-            default:
                 break;
         }
     }
@@ -49,12 +45,10 @@ internal class Field
             case 5:
                 _lines[line - 1].F5 = fieldColor;
                 break;
-            default:
-                break;
         }
     }
 
-    public char[] GetUnavailableChars()
+    public IEnumerable<char> GetUnavailableChars()
     {
         var ret = new List<char>();
         foreach (var line in _lines)
@@ -85,9 +79,10 @@ internal class Field
 
         foreach (var line in _lines)
         {
-            foreach (var mustContain in line.GetCannotPos())
+            var mustPosForLine = line.GetMustPos().ToList();
+            foreach (var cannotPos in line.GetCannotPos(mustPosForLine))
             {
-                ret.Add(mustContain);
+                ret.Add(cannotPos);
             }
         }
 
@@ -100,9 +95,9 @@ internal class Field
 
         foreach (var line in _lines)
         {
-            foreach (var mustContain in line.GetMustPos())
+            foreach (var mustPos in line.GetMustPos())
             {
-                ret.Add(mustContain);
+                ret.Add(mustPos);
             }
         }
 
