@@ -13,10 +13,10 @@
 
             // available chars 
             var unavailableChars = _field.GetUnavailableChars().ToList();
-            
+
             // mustcontains
             var mustcontains = _field.GetMustContains();
-            
+
             // must pos
             var mustPos = _field.GetMustPos();
 
@@ -45,9 +45,9 @@
 
                 return ret;
             }
-            
+
             bool PredAvailChars(string c) => c.ToCharArray().All(value => availableChars.Contains(value));
-            
+
             bool PredMustContainChars(string word) => mustcontains.Length == 0 || mustcontains.All(must => word.ToCharArray().Contains(must));
 
             bool PredCannotPos(string word)
@@ -117,7 +117,7 @@
 
             var points = 0m;
             var seen = new List<char>();
-            
+
             foreach (var c in word.ToCharArray())
             {
                 // Strafpunkte für dopplte Buchstaben
