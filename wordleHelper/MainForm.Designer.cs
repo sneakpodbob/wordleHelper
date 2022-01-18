@@ -56,12 +56,17 @@
             this.btnEval = new System.Windows.Forms.Button();
             this.listBox = new System.Windows.Forms.ListBox();
             this.ChkSort = new System.Windows.Forms.CheckBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt1_1
             // 
             this.txt1_1.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt1_1.Location = new System.Drawing.Point(12, 12);
+            this.txt1_1.Location = new System.Drawing.Point(12, 36);
             this.txt1_1.MaxLength = 1;
             this.txt1_1.Name = "txt1_1";
             this.txt1_1.Size = new System.Drawing.Size(42, 63);
@@ -72,7 +77,7 @@
             // txt1_2
             // 
             this.txt1_2.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt1_2.Location = new System.Drawing.Point(60, 12);
+            this.txt1_2.Location = new System.Drawing.Point(60, 36);
             this.txt1_2.MaxLength = 1;
             this.txt1_2.Name = "txt1_2";
             this.txt1_2.Size = new System.Drawing.Size(42, 63);
@@ -83,7 +88,7 @@
             // txt1_3
             // 
             this.txt1_3.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt1_3.Location = new System.Drawing.Point(108, 12);
+            this.txt1_3.Location = new System.Drawing.Point(108, 36);
             this.txt1_3.MaxLength = 1;
             this.txt1_3.Name = "txt1_3";
             this.txt1_3.Size = new System.Drawing.Size(42, 63);
@@ -94,7 +99,7 @@
             // txt1_4
             // 
             this.txt1_4.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt1_4.Location = new System.Drawing.Point(156, 12);
+            this.txt1_4.Location = new System.Drawing.Point(156, 36);
             this.txt1_4.MaxLength = 1;
             this.txt1_4.Name = "txt1_4";
             this.txt1_4.Size = new System.Drawing.Size(42, 63);
@@ -105,7 +110,7 @@
             // txt1_5
             // 
             this.txt1_5.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt1_5.Location = new System.Drawing.Point(204, 12);
+            this.txt1_5.Location = new System.Drawing.Point(204, 36);
             this.txt1_5.MaxLength = 1;
             this.txt1_5.Name = "txt1_5";
             this.txt1_5.Size = new System.Drawing.Size(42, 63);
@@ -116,7 +121,7 @@
             // txt2_5
             // 
             this.txt2_5.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt2_5.Location = new System.Drawing.Point(204, 81);
+            this.txt2_5.Location = new System.Drawing.Point(204, 105);
             this.txt2_5.MaxLength = 1;
             this.txt2_5.Name = "txt2_5";
             this.txt2_5.Size = new System.Drawing.Size(42, 63);
@@ -127,7 +132,7 @@
             // txt2_4
             // 
             this.txt2_4.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt2_4.Location = new System.Drawing.Point(156, 81);
+            this.txt2_4.Location = new System.Drawing.Point(156, 105);
             this.txt2_4.MaxLength = 1;
             this.txt2_4.Name = "txt2_4";
             this.txt2_4.Size = new System.Drawing.Size(42, 63);
@@ -138,7 +143,7 @@
             // txt2_3
             // 
             this.txt2_3.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt2_3.Location = new System.Drawing.Point(108, 81);
+            this.txt2_3.Location = new System.Drawing.Point(108, 105);
             this.txt2_3.MaxLength = 1;
             this.txt2_3.Name = "txt2_3";
             this.txt2_3.Size = new System.Drawing.Size(42, 63);
@@ -149,7 +154,7 @@
             // txt2_2
             // 
             this.txt2_2.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt2_2.Location = new System.Drawing.Point(60, 81);
+            this.txt2_2.Location = new System.Drawing.Point(60, 105);
             this.txt2_2.MaxLength = 1;
             this.txt2_2.Name = "txt2_2";
             this.txt2_2.Size = new System.Drawing.Size(42, 63);
@@ -160,7 +165,7 @@
             // txt2_1
             // 
             this.txt2_1.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt2_1.Location = new System.Drawing.Point(12, 81);
+            this.txt2_1.Location = new System.Drawing.Point(12, 105);
             this.txt2_1.MaxLength = 1;
             this.txt2_1.Name = "txt2_1";
             this.txt2_1.Size = new System.Drawing.Size(42, 63);
@@ -171,7 +176,7 @@
             // txt3_5
             // 
             this.txt3_5.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt3_5.Location = new System.Drawing.Point(204, 150);
+            this.txt3_5.Location = new System.Drawing.Point(204, 174);
             this.txt3_5.MaxLength = 1;
             this.txt3_5.Name = "txt3_5";
             this.txt3_5.Size = new System.Drawing.Size(42, 63);
@@ -182,7 +187,7 @@
             // txt3_4
             // 
             this.txt3_4.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt3_4.Location = new System.Drawing.Point(156, 150);
+            this.txt3_4.Location = new System.Drawing.Point(156, 174);
             this.txt3_4.MaxLength = 1;
             this.txt3_4.Name = "txt3_4";
             this.txt3_4.Size = new System.Drawing.Size(42, 63);
@@ -193,7 +198,7 @@
             // txt3_3
             // 
             this.txt3_3.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt3_3.Location = new System.Drawing.Point(108, 150);
+            this.txt3_3.Location = new System.Drawing.Point(108, 174);
             this.txt3_3.MaxLength = 1;
             this.txt3_3.Name = "txt3_3";
             this.txt3_3.Size = new System.Drawing.Size(42, 63);
@@ -204,7 +209,7 @@
             // txt3_2
             // 
             this.txt3_2.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt3_2.Location = new System.Drawing.Point(60, 150);
+            this.txt3_2.Location = new System.Drawing.Point(60, 174);
             this.txt3_2.MaxLength = 1;
             this.txt3_2.Name = "txt3_2";
             this.txt3_2.Size = new System.Drawing.Size(42, 63);
@@ -215,7 +220,7 @@
             // txt3_1
             // 
             this.txt3_1.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt3_1.Location = new System.Drawing.Point(12, 150);
+            this.txt3_1.Location = new System.Drawing.Point(12, 174);
             this.txt3_1.MaxLength = 1;
             this.txt3_1.Name = "txt3_1";
             this.txt3_1.Size = new System.Drawing.Size(42, 63);
@@ -226,7 +231,7 @@
             // txt4_5
             // 
             this.txt4_5.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt4_5.Location = new System.Drawing.Point(204, 219);
+            this.txt4_5.Location = new System.Drawing.Point(204, 243);
             this.txt4_5.MaxLength = 1;
             this.txt4_5.Name = "txt4_5";
             this.txt4_5.Size = new System.Drawing.Size(42, 63);
@@ -237,7 +242,7 @@
             // txt4_4
             // 
             this.txt4_4.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt4_4.Location = new System.Drawing.Point(156, 219);
+            this.txt4_4.Location = new System.Drawing.Point(156, 243);
             this.txt4_4.MaxLength = 1;
             this.txt4_4.Name = "txt4_4";
             this.txt4_4.Size = new System.Drawing.Size(42, 63);
@@ -248,7 +253,7 @@
             // txt4_3
             // 
             this.txt4_3.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt4_3.Location = new System.Drawing.Point(108, 219);
+            this.txt4_3.Location = new System.Drawing.Point(108, 243);
             this.txt4_3.MaxLength = 1;
             this.txt4_3.Name = "txt4_3";
             this.txt4_3.Size = new System.Drawing.Size(42, 63);
@@ -259,7 +264,7 @@
             // txt4_2
             // 
             this.txt4_2.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt4_2.Location = new System.Drawing.Point(60, 219);
+            this.txt4_2.Location = new System.Drawing.Point(60, 243);
             this.txt4_2.MaxLength = 1;
             this.txt4_2.Name = "txt4_2";
             this.txt4_2.Size = new System.Drawing.Size(42, 63);
@@ -270,7 +275,7 @@
             // txt4_1
             // 
             this.txt4_1.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt4_1.Location = new System.Drawing.Point(12, 219);
+            this.txt4_1.Location = new System.Drawing.Point(12, 243);
             this.txt4_1.MaxLength = 1;
             this.txt4_1.Name = "txt4_1";
             this.txt4_1.Size = new System.Drawing.Size(42, 63);
@@ -281,7 +286,7 @@
             // txt5_5
             // 
             this.txt5_5.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt5_5.Location = new System.Drawing.Point(204, 288);
+            this.txt5_5.Location = new System.Drawing.Point(204, 312);
             this.txt5_5.MaxLength = 1;
             this.txt5_5.Name = "txt5_5";
             this.txt5_5.Size = new System.Drawing.Size(42, 63);
@@ -292,7 +297,7 @@
             // txt5_4
             // 
             this.txt5_4.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt5_4.Location = new System.Drawing.Point(156, 288);
+            this.txt5_4.Location = new System.Drawing.Point(156, 312);
             this.txt5_4.MaxLength = 1;
             this.txt5_4.Name = "txt5_4";
             this.txt5_4.Size = new System.Drawing.Size(42, 63);
@@ -303,7 +308,7 @@
             // txt5_3
             // 
             this.txt5_3.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt5_3.Location = new System.Drawing.Point(108, 288);
+            this.txt5_3.Location = new System.Drawing.Point(108, 312);
             this.txt5_3.MaxLength = 1;
             this.txt5_3.Name = "txt5_3";
             this.txt5_3.Size = new System.Drawing.Size(42, 63);
@@ -314,7 +319,7 @@
             // txt5_2
             // 
             this.txt5_2.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt5_2.Location = new System.Drawing.Point(60, 288);
+            this.txt5_2.Location = new System.Drawing.Point(60, 312);
             this.txt5_2.MaxLength = 1;
             this.txt5_2.Name = "txt5_2";
             this.txt5_2.Size = new System.Drawing.Size(42, 63);
@@ -325,7 +330,7 @@
             // txt5_1
             // 
             this.txt5_1.Font = new System.Drawing.Font("Cooper Black", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txt5_1.Location = new System.Drawing.Point(12, 288);
+            this.txt5_1.Location = new System.Drawing.Point(12, 312);
             this.txt5_1.MaxLength = 1;
             this.txt5_1.Name = "txt5_1";
             this.txt5_1.Size = new System.Drawing.Size(42, 63);
@@ -336,7 +341,7 @@
             // btnEval
             // 
             this.btnEval.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEval.Location = new System.Drawing.Point(252, 12);
+            this.btnEval.Location = new System.Drawing.Point(252, 36);
             this.btnEval.Name = "btnEval";
             this.btnEval.Size = new System.Drawing.Size(30, 339);
             this.btnEval.TabIndex = 25;
@@ -348,10 +353,11 @@
             // 
             this.listBox.FormattingEnabled = true;
             this.listBox.ItemHeight = 15;
-            this.listBox.Location = new System.Drawing.Point(288, 12);
+            this.listBox.Location = new System.Drawing.Point(288, 36);
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(94, 304);
             this.listBox.TabIndex = 26;
+            this.listBox.DoubleClick += new System.EventHandler(this.listBox_DoubleClick);
             // 
             // ChkSort
             // 
@@ -360,7 +366,7 @@
             this.ChkSort.AutoSize = true;
             this.ChkSort.Checked = true;
             this.ChkSort.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkSort.Location = new System.Drawing.Point(294, 326);
+            this.ChkSort.Location = new System.Drawing.Point(294, 350);
             this.ChkSort.Name = "ChkSort";
             this.ChkSort.Size = new System.Drawing.Size(47, 19);
             this.ChkSort.TabIndex = 27;
@@ -368,11 +374,44 @@
             this.ChkSort.UseVisualStyleBackColor = true;
             this.ChkSort.CheckedChanged += new System.EventHandler(this.ChkSort_CheckedChanged);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(389, 24);
+            this.menuStrip1.TabIndex = 28;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // startToolStripMenuItem
+            // 
+            this.startToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startOverToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.startToolStripMenuItem.Text = "Menu";
+            // 
+            // startOverToolStripMenuItem
+            // 
+            this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
+            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startOverToolStripMenuItem.Text = "Start Over";
+            this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 360);
+            this.ClientSize = new System.Drawing.Size(389, 394);
             this.Controls.Add(this.ChkSort);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.btnEval);
@@ -401,10 +440,12 @@
             this.Controls.Add(this.txt1_3);
             this.Controls.Add(this.txt1_2);
             this.Controls.Add(this.txt1_1);
-            this.MaximumSize = new System.Drawing.Size(405, 399);
-            this.MinimumSize = new System.Drawing.Size(405, 399);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "wordle Helper";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +481,9 @@
         private Button btnEval;
         private ListBox listBox;
         private CheckBox ChkSort;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem startToolStripMenuItem;
+        private ToolStripMenuItem startOverToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }

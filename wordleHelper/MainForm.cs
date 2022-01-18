@@ -15,6 +15,9 @@ namespace wordleHelper
             listBox.Items.Clear();
             // ReSharper disable once CoVariantArrayConversion
             listBox.Items.AddRange(items: Evaluator.Evaluate(ChkSort.Checked).ToArray());
+
+            var nextLine = FindNextEmptyLine();
+            if (nextLine > 0) Controls.OfType<TextBox>().First(tb => tb.Name == $"txt{nextLine}_1").Focus();
         }
 
         private void HandleDoubleClick(object sender, EventArgs e)
@@ -79,6 +82,7 @@ namespace wordleHelper
                     else
                     {
                         Evaluator.SetChar(null, line, row);
+                        box.BackColor = Color.White;
                         Evaluator.UnSetCondition(line, row);
                     }
 
@@ -111,6 +115,97 @@ namespace wordleHelper
         private void ChkSort_CheckedChanged(object sender, EventArgs e)
         {
             btnEval_Click(sender, e);
+        }
+
+        private void listBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox.Items.Count == 0) return;
+
+            var word = listBox.Items[listBox.SelectedIndex].ToString();
+
+            var nextLine = FindNextEmptyLine();
+            if (nextLine > 0) SetWordToLine(nextLine, word);
+        }
+
+        private void SetWordToLine(byte nextLine, string? word)
+        {
+            if (word is null) return;
+            var textBoxs = Controls.OfType<TextBox>().ToList();
+
+            var sender = txt1_1;
+
+            foreach (var i in Enumerable.Range(0,5))
+            {
+                sender = textBoxs.First(tb => tb.Name == $"txt{nextLine}_{i + 1}");
+                sender.Text = word[i].ToString();
+                Evaluator.SetChar(sender.Text.ToCharArray().First(), nextLine, (byte)(i + 1));
+                sender.BackColor = Color.Gray;
+                Evaluator.SetConditionGray(nextLine, (byte)(i + 1));
+            }
+
+            if (nextLine + 1 < 6)
+            {
+                var textBox = textBoxs.First(tb => tb.Name == $"txt{nextLine +1}_1");
+                textBox.Focus();
+            }
+
+            btnEval_Click(sender, EventArgs.Empty);
+        }
+
+        private byte FindNextEmptyLine()
+        {
+            if (string.IsNullOrWhiteSpace(txt1_1.Text) &&
+                string.IsNullOrWhiteSpace(txt1_2.Text) &&
+                string.IsNullOrWhiteSpace(txt1_3.Text) &&
+                string.IsNullOrWhiteSpace(txt1_4.Text) &&
+                string.IsNullOrWhiteSpace(txt1_5.Text))
+                return 1;
+            if (string.IsNullOrWhiteSpace(txt2_1.Text) &&
+                string.IsNullOrWhiteSpace(txt2_2.Text) &&
+                string.IsNullOrWhiteSpace(txt2_3.Text) &&
+                string.IsNullOrWhiteSpace(txt2_4.Text) &&
+                string.IsNullOrWhiteSpace(txt2_5.Text))
+                return 2;
+
+            if (string.IsNullOrWhiteSpace(txt3_1.Text) &&
+                string.IsNullOrWhiteSpace(txt3_2.Text) &&
+                string.IsNullOrWhiteSpace(txt3_3.Text) &&
+                string.IsNullOrWhiteSpace(txt3_4.Text) &&
+                string.IsNullOrWhiteSpace(txt3_5.Text))
+                return 3;
+
+            if (string.IsNullOrWhiteSpace(txt4_1.Text) &&
+                string.IsNullOrWhiteSpace(txt4_2.Text) &&
+                string.IsNullOrWhiteSpace(txt4_3.Text) &&
+                string.IsNullOrWhiteSpace(txt4_4.Text) &&
+                string.IsNullOrWhiteSpace(txt4_5.Text))
+                return 4;
+
+            if (string.IsNullOrWhiteSpace(txt5_1.Text) &&
+                string.IsNullOrWhiteSpace(txt5_2.Text) &&
+                string.IsNullOrWhiteSpace(txt5_3.Text) &&
+                string.IsNullOrWhiteSpace(txt5_4.Text) &&
+                string.IsNullOrWhiteSpace(txt5_5.Text))
+                return 5;
+
+            return 0;
+        }
+
+        private void startOverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var textBox in Controls.OfType<TextBox>().ToList())
+            {
+                textBox.BackColor = Color.White;
+                textBox.Text = string.Empty;
+            }
+
+            Evaluator = new EvalCorp();
+            listBox.Items.Clear();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
