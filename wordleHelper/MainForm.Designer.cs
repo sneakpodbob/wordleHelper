@@ -55,6 +55,7 @@
             this.txt5_1 = new System.Windows.Forms.TextBox();
             this.btnEval = new System.Windows.Forms.Button();
             this.listBox = new System.Windows.Forms.ListBox();
+            this.ChkSort = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txt1_1
@@ -349,14 +350,30 @@
             this.listBox.ItemHeight = 15;
             this.listBox.Location = new System.Drawing.Point(288, 12);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(94, 334);
+            this.listBox.Size = new System.Drawing.Size(94, 304);
             this.listBox.TabIndex = 26;
+            // 
+            // ChkSort
+            // 
+            this.ChkSort.AccessibleDescription = "Sort for Top Tips";
+            this.ChkSort.AccessibleName = "Sort";
+            this.ChkSort.AutoSize = true;
+            this.ChkSort.Checked = true;
+            this.ChkSort.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ChkSort.Location = new System.Drawing.Point(294, 326);
+            this.ChkSort.Name = "ChkSort";
+            this.ChkSort.Size = new System.Drawing.Size(47, 19);
+            this.ChkSort.TabIndex = 27;
+            this.ChkSort.Text = "Sort";
+            this.ChkSort.UseVisualStyleBackColor = true;
+            this.ChkSort.CheckedChanged += new System.EventHandler(this.ChkSort_CheckedChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 360);
+            this.Controls.Add(this.ChkSort);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.btnEval);
             this.Controls.Add(this.txt5_5);
@@ -384,6 +401,8 @@
             this.Controls.Add(this.txt1_3);
             this.Controls.Add(this.txt1_2);
             this.Controls.Add(this.txt1_1);
+            this.MaximumSize = new System.Drawing.Size(405, 399);
+            this.MinimumSize = new System.Drawing.Size(405, 399);
             this.Name = "MainForm";
             this.Text = "wordle Helper";
             this.ResumeLayout(false);
@@ -420,5 +439,6 @@
         private TextBox txt5_1;
         private Button btnEval;
         private ListBox listBox;
+        private CheckBox ChkSort;
     }
 }
