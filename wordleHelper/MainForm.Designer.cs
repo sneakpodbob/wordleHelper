@@ -60,7 +60,11 @@
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt1_1
@@ -345,17 +349,20 @@
             this.btnEval.Name = "btnEval";
             this.btnEval.Size = new System.Drawing.Size(30, 339);
             this.btnEval.TabIndex = 25;
-            this.btnEval.Text = "EVAL";
+            this.btnEval.Text = ">FILTER>";
             this.btnEval.UseVisualStyleBackColor = true;
             this.btnEval.Click += new System.EventHandler(this.BtnEval_Click);
             // 
             // listBox
             // 
+            this.listBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox.FormattingEnabled = true;
             this.listBox.ItemHeight = 15;
             this.listBox.Location = new System.Drawing.Point(288, 36);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(94, 304);
+            this.listBox.Size = new System.Drawing.Size(94, 319);
             this.listBox.TabIndex = 26;
             this.listBox.DoubleClick += new System.EventHandler(this.ListBox_DoubleClick);
             // 
@@ -363,10 +370,11 @@
             // 
             this.ChkSort.AccessibleDescription = "Sort for Top Tips";
             this.ChkSort.AccessibleName = "Sort";
+            this.ChkSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ChkSort.AutoSize = true;
             this.ChkSort.Checked = true;
             this.ChkSort.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkSort.Location = new System.Drawing.Point(294, 350);
+            this.ChkSort.Location = new System.Drawing.Point(288, 356);
             this.ChkSort.Name = "ChkSort";
             this.ChkSort.Size = new System.Drawing.Size(47, 19);
             this.ChkSort.TabIndex = 27;
@@ -396,22 +404,49 @@
             // startOverToolStripMenuItem
             // 
             this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
-            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startOverToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.startOverToolStripMenuItem.Text = "Start Over";
             this.startOverToolStripMenuItem.Click += new System.EventHandler(this.StartOverToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 383);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(389, 22);
+            this.statusStrip1.TabIndex = 29;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(182, 17);
+            this.toolStripStatusLabel1.Text = "Double click cell to change color.";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.IsLink = true;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(70, 17);
+            this.toolStripStatusLabel2.Text = "Play Wordle";
+            this.toolStripStatusLabel2.ToolTipText = "https://www.powerlanguage.co.uk/wordle";
+            this.toolStripStatusLabel2.Click += new System.EventHandler(this.ToolStripStatusLabel2_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 394);
+            this.ClientSize = new System.Drawing.Size(389, 405);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ChkSort);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.btnEval);
@@ -442,10 +477,13 @@
             this.Controls.Add(this.txt1_1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(405, 444);
             this.Name = "MainForm";
             this.Text = "wordle Helper";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -485,5 +523,8 @@
         private ToolStripMenuItem startToolStripMenuItem;
         private ToolStripMenuItem startOverToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripStatusLabel toolStripStatusLabel2;
     }
 }

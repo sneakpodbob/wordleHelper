@@ -1,14 +1,16 @@
+using System.Diagnostics;
+
 namespace wordleHelper;
 
 public partial class MainForm : Form
 {
-    public MainForm(EvalCorp evaluator)
+    public MainForm(Evaluator evaluator)
     {
         Evaluator = evaluator;
         InitializeComponent();
     }
 
-    private EvalCorp Evaluator { get; set; }
+    private Evaluator Evaluator { get; set; }
 
     private async void BtnEval_Click(object sender, EventArgs e)
     {
@@ -199,12 +201,17 @@ public partial class MainForm : Form
             textBox.Text = string.Empty;
         }
 
-        Evaluator = new EvalCorp();
+        Evaluator = new Evaluator();
         listBox.Items.Clear();
     }
 
     private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
     {
         Application.Exit();
+    }
+
+    private void ToolStripStatusLabel2_Click(object sender, EventArgs e)
+    {
+        Process.Start(new ProcessStartInfo("cmd", $"/c start https://www.powerlanguage.co.uk/wordle") { CreateNoWindow = true });
     }
 }

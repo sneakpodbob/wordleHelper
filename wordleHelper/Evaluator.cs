@@ -1,6 +1,6 @@
 ﻿namespace wordleHelper;
 
-public class EvalCorp
+public class Evaluator
 {
     private readonly List<char> _availables = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray().ToList();
     private readonly Field _field = new();
