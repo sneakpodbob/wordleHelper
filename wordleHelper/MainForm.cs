@@ -10,11 +10,11 @@ public partial class MainForm : Form
 
     private EvalCorp Evaluator { get; set; }
 
-    private void btnEval_Click(object sender, EventArgs e)
+    private async void BtnEval_Click(object sender, EventArgs e)
     {
         listBox.Items.Clear();
         // ReSharper disable once CoVariantArrayConversion
-        listBox.Items.AddRange(items: Evaluator.Evaluate(ChkSort.Checked).ToArray());
+        listBox.Items.AddRange((await Evaluator.EvaluateAsync(ChkSort.Checked)).ToArray());
 
         var nextLine = FindNextEmptyLine();
         if (nextLine > 0) Controls.OfType<TextBox>().First(tb => tb.Name == $"txt{nextLine}_1").Focus();
@@ -77,7 +77,7 @@ public partial class MainForm : Form
                         nextTextBox.Focus();
                     }
 
-                    if (row == 5) btnEval_Click(sender, e);
+                    if (row == 5) BtnEval_Click(sender, e);
                 }
                 else
                 {
@@ -114,10 +114,10 @@ public partial class MainForm : Form
 
     private void ChkSort_CheckedChanged(object sender, EventArgs e)
     {
-        btnEval_Click(sender, e);
+        BtnEval_Click(sender, e);
     }
 
-    private void listBox_DoubleClick(object sender, EventArgs e)
+    private void ListBox_DoubleClick(object sender, EventArgs e)
     {
         if (listBox.Items.Count == 0) return;
 
@@ -149,7 +149,7 @@ public partial class MainForm : Form
             textBox.Focus();
         }
 
-        btnEval_Click(sender, EventArgs.Empty);
+        BtnEval_Click(sender, EventArgs.Empty);
     }
 
     private byte FindNextEmptyLine()
@@ -191,7 +191,7 @@ public partial class MainForm : Form
         return 0;
     }
 
-    private void startOverToolStripMenuItem_Click(object sender, EventArgs e)
+    private void StartOverToolStripMenuItem_Click(object sender, EventArgs e)
     {
         foreach (var textBox in Controls.OfType<TextBox>().ToList())
         {
@@ -203,7 +203,7 @@ public partial class MainForm : Form
         listBox.Items.Clear();
     }
 
-    private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+    private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
     {
         Application.Exit();
     }

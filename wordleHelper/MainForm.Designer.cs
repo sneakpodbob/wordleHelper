@@ -347,7 +347,7 @@
             this.btnEval.TabIndex = 25;
             this.btnEval.Text = "EVAL";
             this.btnEval.UseVisualStyleBackColor = true;
-            this.btnEval.Click += new System.EventHandler(this.btnEval_Click);
+            this.btnEval.Click += new System.EventHandler(this.BtnEval_Click);
             // 
             // listBox
             // 
@@ -357,7 +357,7 @@
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(94, 304);
             this.listBox.TabIndex = 26;
-            this.listBox.DoubleClick += new System.EventHandler(this.listBox_DoubleClick);
+            this.listBox.DoubleClick += new System.EventHandler(this.ListBox_DoubleClick);
             // 
             // ChkSort
             // 
@@ -398,14 +398,14 @@
             this.startOverToolStripMenuItem.Name = "startOverToolStripMenuItem";
             this.startOverToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.startOverToolStripMenuItem.Text = "Start Over";
-            this.startOverToolStripMenuItem.Click += new System.EventHandler(this.startOverToolStripMenuItem_Click);
+            this.startOverToolStripMenuItem.Click += new System.EventHandler(this.StartOverToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // MainForm
             // 

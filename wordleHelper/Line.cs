@@ -25,7 +25,7 @@ internal class Line
         return retVal.AsEnumerable();
     }
 
-    public IEnumerable<char> GetMustContains()
+    public IEnumerable<char> GetCharactersThatMustBeContained()
     {
         var retVal = new HashSet<char>();
         if (F1 is FieldColor.Green or FieldColor.Yellow && C1 is not null) retVal.Add(char.ToLower(C1.Value));
@@ -36,7 +36,7 @@ internal class Line
         return retVal.AsEnumerable();
     }
 
-    public IEnumerable<(byte pos, char c)> GetCannotPos(List<(byte pos, char c)> mustPosForLine)
+    public IEnumerable<(byte pos, char c)> GetCharactersWithPositionsWhereTheyCannotBe(IEnumerable<(byte pos, char c)> mustPosForLine)
     {
         var mustPosChars = mustPosForLine.Select(mp => mp.c).ToList();
         var retVal = new HashSet<(byte pos, char c)>();
@@ -55,7 +55,7 @@ internal class Line
         return retVal.AsEnumerable();
     }
 
-    public IEnumerable<(byte pos, char c)> GetMustPos()
+    public IEnumerable<(byte pos, char c)> GetDefinitivePositions()
     {
         var retVal = new HashSet<(byte pos, char c)>();
         if (F1 is FieldColor.Green && C1 is not null) retVal.Add((0, char.ToLower(C1.Value)));
