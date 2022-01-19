@@ -1,211 +1,210 @@
-namespace wordleHelper
+namespace wordleHelper;
+
+public partial class MainForm : Form
 {
-    public partial class MainForm : Form
+    public MainForm(EvalCorp evaluator)
     {
-        public MainForm(EvalCorp evaluator)
+        Evaluator = evaluator;
+        InitializeComponent();
+    }
+
+    private EvalCorp Evaluator { get; set; }
+
+    private void btnEval_Click(object sender, EventArgs e)
+    {
+        listBox.Items.Clear();
+        // ReSharper disable once CoVariantArrayConversion
+        listBox.Items.AddRange(items: Evaluator.Evaluate(ChkSort.Checked).ToArray());
+
+        var nextLine = FindNextEmptyLine();
+        if (nextLine > 0) Controls.OfType<TextBox>().First(tb => tb.Name == $"txt{nextLine}_1").Focus();
+    }
+
+    private void HandleDoubleClick(object sender, EventArgs e)
+    {
+        switch (sender)
         {
-            Evaluator = evaluator;
-            InitializeComponent();
+            case TextBox box:
+                var line = byte.Parse(box.Name.Substring(3, 1));
+                var row = byte.Parse(box.Name.Substring(5, 1));
+
+                if (box.BackColor == Color.Gray)
+                {
+                    box.BackColor = Color.Yellow;
+                    Evaluator.SetConditionYellow(line, row);
+                }
+                else if (box.BackColor == Color.Yellow)
+                {
+                    box.BackColor = Color.Green;
+                    Evaluator.SetConditionGreen(line, row);
+                }
+                else if (box.BackColor == Color.Green)
+                {
+                    box.BackColor = Color.White;
+                    Evaluator.UnSetCondition(line, row);
+                }
+                else
+                {
+                    box.BackColor = Color.Gray;
+                    Evaluator.SetConditionGray(line, row);
+                }
+
+                break;
         }
+    }
 
-        private EvalCorp Evaluator { get; set; }
-
-        private void btnEval_Click(object sender, EventArgs e)
+    private void HandleTextChanged(object sender, EventArgs e)
+    {
+        switch (sender)
         {
-            listBox.Items.Clear();
-            // ReSharper disable once CoVariantArrayConversion
-            listBox.Items.AddRange(items: Evaluator.Evaluate(ChkSort.Checked).ToArray());
+            case TextBox box:
+                var line = byte.Parse(box.Name.Substring(3, 1));
+                var row = byte.Parse(box.Name.Substring(5, 1));
 
-            var nextLine = FindNextEmptyLine();
-            if (nextLine > 0) Controls.OfType<TextBox>().First(tb => tb.Name == $"txt{nextLine}_1").Focus();
-        }
+                if (!string.IsNullOrWhiteSpace(box.Text))
+                {
+                    Evaluator.SetChar(box.Text.ToCharArray().First(), line, row);
 
-        private void HandleDoubleClick(object sender, EventArgs e)
-        {
-            switch (sender)
-            {
-                case TextBox box:
-                    var line = byte.Parse(box.Name.Substring(3, 1));
-                    var row = byte.Parse(box.Name.Substring(5, 1));
-                    
-                    if (box.BackColor == Color.Gray)
+                    box.BackColor = Color.Gray;
+                    Evaluator.SetConditionGray(line, row);
+
+                    var nextTextBox = GetNextTextBox(line, row);
+
+                    if (nextTextBox is not null)
                     {
-                        box.BackColor = Color.Yellow;
-                        Evaluator.SetConditionYellow(line, row);
-                    }
-                    else if (box.BackColor == Color.Yellow)
-                    {
-                        box.BackColor = Color.Green;
-                        Evaluator.SetConditionGreen(line, row);
-                    }
-                    else if (box.BackColor == Color.Green)
-                    {
-                        box.BackColor = Color.White;
-                        Evaluator.UnSetCondition(line, row);
-                    }
-                    else
-                    {
-                        box.BackColor = Color.Gray;
-                        Evaluator.SetConditionGray(line, row);
-                    }
-
-                    break;
-            }
-        }
-
-        private void HandleTextChanged(object sender, EventArgs e)
-        {
-            switch (sender)
-            {
-                case TextBox box:
-                    var line = byte.Parse(box.Name.Substring(3, 1));
-                    var row = byte.Parse(box.Name.Substring(5, 1));
-
-                    if (!string.IsNullOrWhiteSpace(box.Text))
-                    {
-                        Evaluator.SetChar(box.Text.ToCharArray().First(), line, row);
-
-                        box.BackColor = Color.Gray;
-                        Evaluator.SetConditionGray(line, row);
-
-                        var nextTextBox = GetNextTextBox(line, row);
-
-                        if (nextTextBox is not null)
-                        {
-                            nextTextBox.SelectionStart = 0;
-                            nextTextBox.SelectionLength = 1;
-                            nextTextBox.Focus();
-                        }
-
-                        if (row == 5) btnEval_Click(sender, e);
-                    }
-                    else
-                    {
-                        Evaluator.SetChar(null, line, row);
-                        box.BackColor = Color.White;
-                        Evaluator.UnSetCondition(line, row);
+                        nextTextBox.SelectionStart = 0;
+                        nextTextBox.SelectionLength = 1;
+                        nextTextBox.Focus();
                     }
 
-                    break;
-            }
-        }
+                    if (row == 5) btnEval_Click(sender, e);
+                }
+                else
+                {
+                    Evaluator.SetChar(null, line, row);
+                    box.BackColor = Color.White;
+                    Evaluator.UnSetCondition(line, row);
+                }
 
-        private TextBox? GetNextTextBox(byte line, byte row)
+                break;
+        }
+    }
+
+    private TextBox? GetNextTextBox(byte line, byte row)
+    {
+        var nextLine = line;
+        var nextRow = row;
+
+        switch (row)
         {
-            var nextLine = line;
-            var nextRow = row;
-            
-            switch (row)
-            {
-                case 5 when line == 5:
-                    return null;
-                case < 5:
-                    nextRow = (byte)(row + 1);
-                    break;
-                case 5:
-                    nextRow = 1;
-                    nextLine = (byte)(line + 1);
-                    break;
-            }
-
-            var textBoxs = Controls.OfType<TextBox>().ToList();
-            return textBoxs.First(tb => tb.Name == $"txt{nextLine}_{nextRow}");
+            case 5 when line == 5:
+                return null;
+            case < 5:
+                nextRow = (byte)(row + 1);
+                break;
+            case 5:
+                nextRow = 1;
+                nextLine = (byte)(line + 1);
+                break;
         }
 
-        private void ChkSort_CheckedChanged(object sender, EventArgs e)
+        var textBoxs = Controls.OfType<TextBox>().ToList();
+        return textBoxs.First(tb => tb.Name == $"txt{nextLine}_{nextRow}");
+    }
+
+    private void ChkSort_CheckedChanged(object sender, EventArgs e)
+    {
+        btnEval_Click(sender, e);
+    }
+
+    private void listBox_DoubleClick(object sender, EventArgs e)
+    {
+        if (listBox.Items.Count == 0) return;
+
+        var word = listBox.Items[listBox.SelectedIndex].ToString();
+
+        var nextLine = FindNextEmptyLine();
+        if (nextLine > 0) SetWordToLine(nextLine, word);
+    }
+
+    private void SetWordToLine(byte nextLine, string? word)
+    {
+        if (word is null) return;
+        var textBoxs = Controls.OfType<TextBox>().ToList();
+
+        var sender = txt1_1;
+
+        foreach (var i in Enumerable.Range(0, 5))
         {
-            btnEval_Click(sender, e);
+            sender = textBoxs.First(tb => tb.Name == $"txt{nextLine}_{i + 1}");
+            sender.Text = word[i].ToString();
+            Evaluator.SetChar(sender.Text.ToCharArray().First(), nextLine, (byte)(i + 1));
+            sender.BackColor = Color.Gray;
+            Evaluator.SetConditionGray(nextLine, (byte)(i + 1));
         }
 
-        private void listBox_DoubleClick(object sender, EventArgs e)
+        if (nextLine + 1 < 6)
         {
-            if (listBox.Items.Count == 0) return;
-
-            var word = listBox.Items[listBox.SelectedIndex].ToString();
-
-            var nextLine = FindNextEmptyLine();
-            if (nextLine > 0) SetWordToLine(nextLine, word);
+            var textBox = textBoxs.First(tb => tb.Name == $"txt{nextLine + 1}_1");
+            textBox.Focus();
         }
 
-        private void SetWordToLine(byte nextLine, string? word)
+        btnEval_Click(sender, EventArgs.Empty);
+    }
+
+    private byte FindNextEmptyLine()
+    {
+        if (string.IsNullOrWhiteSpace(txt1_1.Text) &&
+            string.IsNullOrWhiteSpace(txt1_2.Text) &&
+            string.IsNullOrWhiteSpace(txt1_3.Text) &&
+            string.IsNullOrWhiteSpace(txt1_4.Text) &&
+            string.IsNullOrWhiteSpace(txt1_5.Text))
+            return 1;
+        if (string.IsNullOrWhiteSpace(txt2_1.Text) &&
+            string.IsNullOrWhiteSpace(txt2_2.Text) &&
+            string.IsNullOrWhiteSpace(txt2_3.Text) &&
+            string.IsNullOrWhiteSpace(txt2_4.Text) &&
+            string.IsNullOrWhiteSpace(txt2_5.Text))
+            return 2;
+
+        if (string.IsNullOrWhiteSpace(txt3_1.Text) &&
+            string.IsNullOrWhiteSpace(txt3_2.Text) &&
+            string.IsNullOrWhiteSpace(txt3_3.Text) &&
+            string.IsNullOrWhiteSpace(txt3_4.Text) &&
+            string.IsNullOrWhiteSpace(txt3_5.Text))
+            return 3;
+
+        if (string.IsNullOrWhiteSpace(txt4_1.Text) &&
+            string.IsNullOrWhiteSpace(txt4_2.Text) &&
+            string.IsNullOrWhiteSpace(txt4_3.Text) &&
+            string.IsNullOrWhiteSpace(txt4_4.Text) &&
+            string.IsNullOrWhiteSpace(txt4_5.Text))
+            return 4;
+
+        if (string.IsNullOrWhiteSpace(txt5_1.Text) &&
+            string.IsNullOrWhiteSpace(txt5_2.Text) &&
+            string.IsNullOrWhiteSpace(txt5_3.Text) &&
+            string.IsNullOrWhiteSpace(txt5_4.Text) &&
+            string.IsNullOrWhiteSpace(txt5_5.Text))
+            return 5;
+
+        return 0;
+    }
+
+    private void startOverToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        foreach (var textBox in Controls.OfType<TextBox>().ToList())
         {
-            if (word is null) return;
-            var textBoxs = Controls.OfType<TextBox>().ToList();
-
-            var sender = txt1_1;
-
-            foreach (var i in Enumerable.Range(0,5))
-            {
-                sender = textBoxs.First(tb => tb.Name == $"txt{nextLine}_{i + 1}");
-                sender.Text = word[i].ToString();
-                Evaluator.SetChar(sender.Text.ToCharArray().First(), nextLine, (byte)(i + 1));
-                sender.BackColor = Color.Gray;
-                Evaluator.SetConditionGray(nextLine, (byte)(i + 1));
-            }
-
-            if (nextLine + 1 < 6)
-            {
-                var textBox = textBoxs.First(tb => tb.Name == $"txt{nextLine +1}_1");
-                textBox.Focus();
-            }
-
-            btnEval_Click(sender, EventArgs.Empty);
+            textBox.BackColor = Color.White;
+            textBox.Text = string.Empty;
         }
 
-        private byte FindNextEmptyLine()
-        {
-            if (string.IsNullOrWhiteSpace(txt1_1.Text) &&
-                string.IsNullOrWhiteSpace(txt1_2.Text) &&
-                string.IsNullOrWhiteSpace(txt1_3.Text) &&
-                string.IsNullOrWhiteSpace(txt1_4.Text) &&
-                string.IsNullOrWhiteSpace(txt1_5.Text))
-                return 1;
-            if (string.IsNullOrWhiteSpace(txt2_1.Text) &&
-                string.IsNullOrWhiteSpace(txt2_2.Text) &&
-                string.IsNullOrWhiteSpace(txt2_3.Text) &&
-                string.IsNullOrWhiteSpace(txt2_4.Text) &&
-                string.IsNullOrWhiteSpace(txt2_5.Text))
-                return 2;
+        Evaluator = new EvalCorp();
+        listBox.Items.Clear();
+    }
 
-            if (string.IsNullOrWhiteSpace(txt3_1.Text) &&
-                string.IsNullOrWhiteSpace(txt3_2.Text) &&
-                string.IsNullOrWhiteSpace(txt3_3.Text) &&
-                string.IsNullOrWhiteSpace(txt3_4.Text) &&
-                string.IsNullOrWhiteSpace(txt3_5.Text))
-                return 3;
-
-            if (string.IsNullOrWhiteSpace(txt4_1.Text) &&
-                string.IsNullOrWhiteSpace(txt4_2.Text) &&
-                string.IsNullOrWhiteSpace(txt4_3.Text) &&
-                string.IsNullOrWhiteSpace(txt4_4.Text) &&
-                string.IsNullOrWhiteSpace(txt4_5.Text))
-                return 4;
-
-            if (string.IsNullOrWhiteSpace(txt5_1.Text) &&
-                string.IsNullOrWhiteSpace(txt5_2.Text) &&
-                string.IsNullOrWhiteSpace(txt5_3.Text) &&
-                string.IsNullOrWhiteSpace(txt5_4.Text) &&
-                string.IsNullOrWhiteSpace(txt5_5.Text))
-                return 5;
-
-            return 0;
-        }
-
-        private void startOverToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (var textBox in Controls.OfType<TextBox>().ToList())
-            {
-                textBox.BackColor = Color.White;
-                textBox.Text = string.Empty;
-            }
-
-            Evaluator = new EvalCorp();
-            listBox.Items.Clear();
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+    private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Application.Exit();
     }
 }
