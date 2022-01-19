@@ -26,27 +26,27 @@ public partial class MainForm : Form
         {
             case TextBox box:
                 var line = byte.Parse(box.Name.Substring(3, 1));
-                var row = byte.Parse(box.Name.Substring(5, 1));
+                var column = byte.Parse(box.Name.Substring(5, 1));
 
                 if (box.BackColor == Color.Gray)
                 {
                     box.BackColor = Color.Yellow;
-                    Evaluator.SetConditionYellow(line, row);
+                    Evaluator.SetConditionYellow(line, column);
                 }
                 else if (box.BackColor == Color.Yellow)
                 {
                     box.BackColor = Color.Green;
-                    Evaluator.SetConditionGreen(line, row);
+                    Evaluator.SetConditionGreen(line, column);
                 }
                 else if (box.BackColor == Color.Green)
                 {
                     box.BackColor = Color.White;
-                    Evaluator.UnSetCondition(line, row);
+                    Evaluator.UnSetCondition(line, column);
                 }
                 else
                 {
                     box.BackColor = Color.Gray;
-                    Evaluator.SetConditionGray(line, row);
+                    Evaluator.SetConditionGray(line, column);
                 }
 
                 break;
@@ -59,16 +59,16 @@ public partial class MainForm : Form
         {
             case TextBox box:
                 var line = byte.Parse(box.Name.Substring(3, 1));
-                var row = byte.Parse(box.Name.Substring(5, 1));
+                var column = byte.Parse(box.Name.Substring(5, 1));
 
                 if (!string.IsNullOrWhiteSpace(box.Text))
                 {
-                    Evaluator.SetChar(box.Text.ToCharArray().First(), line, row);
+                    Evaluator.SetChar(box.Text.ToCharArray().First(), line, column);
 
                     box.BackColor = Color.Gray;
-                    Evaluator.SetConditionGray(line, row);
+                    Evaluator.SetConditionGray(line, column);
 
-                    var nextTextBox = GetNextTextBox(line, row);
+                    var nextTextBox = GetNextTextBox(line, column);
 
                     if (nextTextBox is not null)
                     {
@@ -77,39 +77,39 @@ public partial class MainForm : Form
                         nextTextBox.Focus();
                     }
 
-                    if (row == 5) BtnEval_Click(sender, e);
+                    if (column == 5) BtnEval_Click(sender, e);
                 }
                 else
                 {
-                    Evaluator.SetChar(null, line, row);
+                    Evaluator.SetChar(null, line, column);
                     box.BackColor = Color.White;
-                    Evaluator.UnSetCondition(line, row);
+                    Evaluator.UnSetCondition(line, column);
                 }
 
                 break;
         }
     }
 
-    private TextBox? GetNextTextBox(byte line, byte row)
+    private TextBox? GetNextTextBox(byte line, byte column)
     {
         var nextLine = line;
-        var nextRow = row;
+        var nextColumn = column;
 
-        switch (row)
+        switch (column)
         {
             case 5 when line == 5:
                 return null;
             case < 5:
-                nextRow = (byte)(row + 1);
+                nextColumn = (byte)(column + 1);
                 break;
             case 5:
-                nextRow = 1;
+                nextColumn = 1;
                 nextLine = (byte)(line + 1);
                 break;
         }
 
         var textBoxs = Controls.OfType<TextBox>().ToList();
-        return textBoxs.First(tb => tb.Name == $"txt{nextLine}_{nextRow}");
+        return textBoxs.First(tb => tb.Name == $"txt{nextLine}_{nextColumn}");
     }
 
     private void ChkSort_CheckedChanged(object sender, EventArgs e)
