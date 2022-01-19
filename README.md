@@ -20,4 +20,4 @@ Enter the same word on wordle and *double click* the letters that returned yello
 
 Click evaluate again.
 
-Choose a new suggestion and continue until you win (or lose - not guarantee here..)
+Choose a new suggestion and continue until you win (or lose - no guarantee here..)
