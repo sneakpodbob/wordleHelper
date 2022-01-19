@@ -10,7 +10,7 @@ internal static class Program
     {
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
-        var eval = new EvalCorp();
+        var eval = new Evaluator();
         ApplicationConfiguration.Initialize();
         Application.Run(new MainForm(eval));
     }
