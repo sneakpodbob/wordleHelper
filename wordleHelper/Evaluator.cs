@@ -1,15 +1,28 @@
 ﻿namespace wordleHelper;
 
+/// <summary>
+/// Evaluator takes all the status via SetChar and SetFieldstatus
+/// and then returns a list of possible Solutions to the wordle via EvaluateAsync
+/// </summary>
 public class Evaluator
 {
-    private readonly List<char> _availables = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray().ToList();
+    private readonly List<char> _validAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray().ToList();
     private readonly Field _field = new();
 
+    /// <summary>
+    /// Evaluates all known informations about the target word and return a list of possible
+    /// solutions to the puzzle.
+    /// </summary>
+    /// <param name="sort">Sort so that words that contain more popular letters end up at the top of the list</param>
+    /// <returns></returns>
     public async Task<List<string>> EvaluateAsync(bool sort)
     {
+        // Get the wordlist
         var list = await Wordlist.CreateInstanceAsync();
 
-        // Apply all sorts of filters here.
+        /*
+         * Apply all sorts of filters here.
+         */
 
         // available chars 
         var unavailableChars = _field.GetUnavailableChars().ToList();
@@ -23,16 +36,23 @@ public class Evaluator
         // cannot pos
         var charactersWithPositionsWhereTheyCannotBe = _field.GetCharactersWithPositionsWhereTheyCannotBe();
 
+        // if you use a word that contains specific a letter more than once, you'll get your green/yellow indicator
+        // only on the first one - so the second one (gray) would be in unavailableChars-Array - which is not correct
+        // so we substract it here -- finding a more clever solution here would be a thing to consider.
         for (var i = unavailableChars.Count - 1; i >= 0; i--)
         {
-            if (definitivePositions.Exists(pos => pos.c == unavailableChars[i]))
+            if (definitivePositions.Exists(match: pos => pos.c == unavailableChars[index: i]))
             {
-                unavailableChars.RemoveAt(i);
+                unavailableChars.RemoveAt(index: i);
             }
         }
 
-        var availableChars = _availables.Where(c => !unavailableChars.Contains(c));
+        // filter the alphabet for chars that are still in the game
+        var availableChars = _validAlphabet.Where(predicate: c => !unavailableChars.Contains(item: c));
 
+        /*
+         * predicates to use in the filtering.
+         */
         bool PredMustPos(string word)
         {
             if (definitivePositions.Count == 0) return true;
@@ -40,15 +60,15 @@ public class Evaluator
             var ret = true;
             foreach (var (pos, buchstabe) in definitivePositions)
             {
-                ret &= word.Substring(pos, 1) == buchstabe.ToString();
+                ret &= word.Substring(startIndex: pos, length: 1) == buchstabe.ToString();
             }
 
             return ret;
         }
 
-        bool PredAvailChars(string c) => c.ToCharArray().All(value => availableChars.Contains(value));
+        bool PredAvailChars(string c) => c.ToCharArray().All(predicate: value => availableChars.Contains(value: value));
 
-        bool PredMustContainChars(string word) => charactersThatMustBeContained.Length == 0 || charactersThatMustBeContained.All(must => word.ToCharArray().Contains(must));
+        bool PredMustContainChars(string word) => charactersThatMustBeContained.Length == 0 || charactersThatMustBeContained.All(predicate: must => word.ToCharArray().Contains(value: must));
 
         bool PredCannotPos(string word)
         {
@@ -57,49 +77,82 @@ public class Evaluator
             var ret = true;
             foreach (var (pos, buchstabe) in charactersWithPositionsWhereTheyCannotBe)
             {
-                ret &= word.Substring(pos, 1) != buchstabe.ToString();
+                ret &= word.Substring(startIndex: pos, length: 1) != buchstabe.ToString();
             }
 
             return ret;
         }
 
         var returnList = list.AsParallel().AsOrdered()
-            .Where(PredAvailChars)
-            .Where(PredMustContainChars)
-            .Where(PredMustPos)
-            .Where(PredCannotPos);
+            .Where(predicate: PredAvailChars)
+            .Where(predicate: PredMustContainChars)
+            .Where(predicate: PredMustPos)
+            .Where(predicate: PredCannotPos);
 
-        return sort ? returnList.OrderByDescending(GetSortPointsForWord).ToList() : returnList.ToList();
+        // return the list, either sorted or as they've come from the wordlist (which is alphabetical)
+        return sort ? returnList.OrderByDescending(keySelector: GetSortPointsForWord).ToList() : returnList.ToList();
     }
 
-    public void SetConditionGreen(byte line, byte column)
+    /// <summary>
+    /// Set the Color/Status-Information for the field with the given
+    /// coordinates.
+    /// </summary>
+    /// <param name="color">Either Yellow, Green, White or Gray</param>
+    /// <param name="line">line index (1-based)</param>
+    /// <param name="column">column index (1-based)</param>
+    /// <exception cref="ArgumentOutOfRangeException">if Color is not one of the 3 expected values</exception>
+    public void SetColor(Color color, byte line, byte column)
     {
-        _field.SetCondition(FieldColor.Green, line, column);
+        _field.SetCondition(fieldStatus: GetFieldStatusFromColor(color: color), line: line, column: column);
     }
 
-    public void SetConditionYellow(byte line, byte column)
+    /// <summary>
+    /// Helper-Method to convert Color to Fieldstatus-Enum
+    /// </summary>
+    /// <param name="color">Either Yellow, Green, White or Gray</param>
+    /// <returns>Fieldstatus Value that corresponds to InputColor</returns>
+    /// <exception cref="ArgumentOutOfRangeException">if Color is not one of the 3 expected values</exception>
+    private static FieldStatus GetFieldStatusFromColor(Color color)
     {
-        _field.SetCondition(FieldColor.Yellow, line, column);
+        var nextColorDict = new Dictionary<Color, FieldStatus>
+        {
+            {Color.Gray, FieldStatus.Gray},
+            {Color.Yellow, FieldStatus.Yellow},
+            {Color.Green, FieldStatus.Green},
+            {Color.White, FieldStatus.Unset}
+        };
+
+        if (!nextColorDict.ContainsKey(key: color))
+        {
+            throw new ArgumentOutOfRangeException(paramName: nameof(color), actualValue: color, message: null);
+        }
+
+        return nextColorDict[key: color];
     }
 
-    public void SetConditionGray(byte line, byte column)
+    /// <summary>
+    /// Set the Letter for the field with the given coordinates.
+    /// </summary>
+    /// <param name="letter">The users guessed letter</param>
+    /// <param name="line">line index (1-based)</param>
+    /// <param name="column">column index (1-based)</param>
+    public void SetChar(char? letter, byte line, byte column)
     {
-        _field.SetCondition(FieldColor.Gray, line, column);
+        _field.SetChar(letter: letter, line: line, column: column);
     }
 
-    public void UnSetCondition(byte line, byte column)
-    {
-        _field.SetCondition(FieldColor.Unset, line, column);
-    }
-
-    public void SetChar(char? c, byte line, byte column)
-    {
-        _field.SetChar(c, line, column);
-    }
-
+    /// <summary>
+    /// Helper - generates a number that is higher the more
+    /// the word contains often used letters - double or triple letters decreases the number.
+    /// </summary>
+    /// <param name="word">word to judge</param>
+    /// <returns>Points for sorting the word. Sort descending with this</returns>
     private static decimal GetSortPointsForWord(string word)
     {
-        var pointsDict = new Dictionary<char, decimal>
+        // Anteile der Buchstaben in der englischen Sprache nach Oxford 
+        // beliebteste 12 Buchstaben
+        // die nehmen wir einfach so als Punkte, andere Buchstaben kriegen 0 Punkte.
+        Dictionary<char, decimal> pointsDict = new()
         {
             { 'e', 11.16m },
             { 'a', 8.45m },
@@ -116,21 +169,25 @@ public class Evaluator
         };
 
         var points = 0m;
-        var seen = new List<char>();
+        var seen = new HashSet<char>();
+
+        // so viele Punkte ziehen wir einem Wort ab das doppelte Buchstaben enthält
+        // erstmal aus'm Bauch raus festgelegt
+        const int pointsMalusForRepeatedLetters = 8;
 
         foreach (var c in word.ToCharArray())
         {
             // Strafpunkte für dopplte Buchstaben
-            if (seen.Contains(c))
+            // (add returns false if the letter has already been seen before)
+            if (!seen.Add(item: c))
             {
-                points -= 8;
+                points -= pointsMalusForRepeatedLetters;
             }
-            seen.Add(c);
 
-            if (!pointsDict.ContainsKey(c)) continue;
+            if (!pointsDict.ContainsKey(key: c)) continue;
 
-            points += pointsDict[c];
-            pointsDict.Remove(c);
+            points += pointsDict[key: c];
+            pointsDict.Remove(key: c);
         }
 
         return points;
