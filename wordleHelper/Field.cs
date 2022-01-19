@@ -50,54 +50,57 @@ internal class Field
 
     public IEnumerable<char> GetUnavailableChars()
     {
-        var ret = new List<char>();
-        foreach (var line in _lines)
-        {
-            ret.AddRange(line.GetUnavailableChars());
-        }
-
-        return ret.ToArray();
-    }
-
-    public char[] GetMustContains()
-    {
         var ret = new HashSet<char>();
         foreach (var line in _lines)
         {
-            foreach (var mustContain in line.GetMustContains())
+            foreach (var unavailableChar in line.GetUnavailableChars())
             {
-                ret.Add(mustContain);
+                ret.Add(unavailableChar);
             }
         }
 
         return ret.ToArray();
     }
 
-    public List<(byte pos, char c)> GetCannotPos()
+    public char[] GetCharactersThatMustBeContained()
+    {
+        var ret = new HashSet<char>();
+        foreach (var line in _lines)
+        {
+            foreach (var mustBeContained in line.GetCharactersThatMustBeContained())
+            {
+                ret.Add(mustBeContained);
+            }
+        }
+
+        return ret.ToArray();
+    }
+
+    public List<(byte pos, char c)> GetCharactersWithPositionsWhereTheyCannotBe()
     {
         var ret = new HashSet<(byte pos, char c)>();
 
         foreach (var line in _lines)
         {
-            var mustPosForLine = line.GetMustPos().ToList();
-            foreach (var cannotPos in line.GetCannotPos(mustPosForLine))
+            var mustPosForLine = line.GetDefinitivePositions().ToList();
+            foreach (var cannotBeTherePos in line.GetCharactersWithPositionsWhereTheyCannotBe(mustPosForLine))
             {
-                ret.Add(cannotPos);
+                ret.Add(cannotBeTherePos);
             }
         }
 
         return ret.ToList();
     }
 
-    public List<(byte pos, char c)> GetMustPos()
+    public List<(byte pos, char c)> GetDefinitivePositions()
     {
         var ret = new HashSet<(byte pos, char c)>();
 
         foreach (var line in _lines)
         {
-            foreach (var mustPos in line.GetMustPos())
+            foreach (var definitivePosition in line.GetDefinitivePositions())
             {
-                ret.Add(mustPos);
+                ret.Add(definitivePosition);
             }
         }
 

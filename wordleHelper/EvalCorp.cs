@@ -5,27 +5,27 @@ public class EvalCorp
     private readonly List<char> _availables = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToLower().ToCharArray().ToList();
     private readonly Field _field = new();
 
-    public List<string> Evaluate(bool sort)
+    public async Task<List<string>> EvaluateAsync(bool sort)
     {
-        var list = Wordlist.CreateInstance();
+        var list = await Wordlist.CreateInstanceAsync();
 
         // Apply all sorts of filters here.
 
         // available chars 
         var unavailableChars = _field.GetUnavailableChars().ToList();
 
-        // mustcontains
-        var mustcontains = _field.GetMustContains();
+        // Characters That Must Be Contained (greens and yellows)
+        var charactersThatMustBeContained = _field.GetCharactersThatMustBeContained();
 
-        // must pos
-        var mustPos = _field.GetMustPos();
+        // Characters where we definitively know where they are (greens)
+        var definitivePositions = _field.GetDefinitivePositions();
 
         // cannot pos
-        var cannotPos = _field.GetCannotPos();
+        var charactersWithPositionsWhereTheyCannotBe = _field.GetCharactersWithPositionsWhereTheyCannotBe();
 
         for (var i = unavailableChars.Count - 1; i >= 0; i--)
         {
-            if (mustPos.Exists(pos => pos.c == unavailableChars[i]))
+            if (definitivePositions.Exists(pos => pos.c == unavailableChars[i]))
             {
                 unavailableChars.RemoveAt(i);
             }
@@ -35,10 +35,10 @@ public class EvalCorp
 
         bool PredMustPos(string word)
         {
-            if (mustPos.Count == 0) return true;
+            if (definitivePositions.Count == 0) return true;
 
             var ret = true;
-            foreach (var (pos, buchstabe) in mustPos)
+            foreach (var (pos, buchstabe) in definitivePositions)
             {
                 ret &= word.Substring(pos, 1) == buchstabe.ToString();
             }
@@ -48,14 +48,14 @@ public class EvalCorp
 
         bool PredAvailChars(string c) => c.ToCharArray().All(value => availableChars.Contains(value));
 
-        bool PredMustContainChars(string word) => mustcontains.Length == 0 || mustcontains.All(must => word.ToCharArray().Contains(must));
+        bool PredMustContainChars(string word) => charactersThatMustBeContained.Length == 0 || charactersThatMustBeContained.All(must => word.ToCharArray().Contains(must));
 
         bool PredCannotPos(string word)
         {
-            if (cannotPos.Count == 0) return true;
+            if (charactersWithPositionsWhereTheyCannotBe.Count == 0) return true;
 
             var ret = true;
-            foreach (var (pos, buchstabe) in cannotPos)
+            foreach (var (pos, buchstabe) in charactersWithPositionsWhereTheyCannotBe)
             {
                 ret &= word.Substring(pos, 1) != buchstabe.ToString();
             }
