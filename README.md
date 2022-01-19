@@ -2,7 +2,7 @@
 
 WinForms based Tool to cheat when playing [wordle](https://www.powerlanguage.co.uk/wordle).
 
-It uses the [word-list](https://github.com/dwyl/english-words/blob/master/words_alpha.txt) from [dwyl/english-words](https://github.com/dwyl/english-words) - it reads the word-list from the included file - if you were to exchange that (keep the same name) it can use your own.
+It uses the [word-list](https://github.com/dwyl/english-words/blob/master/words_alpha.txt) from [dwyl/english-words](https://github.com/dwyl/english-words) - it reads the word-list from the included file - if you were to exchange that (keep the same name) it can use your own. The word-list is far from optimal, since it's not the same used in wordle - so sometimes, some of the suggestions cannot be used in wordle. Their wordlist is not publicly available (AFAIK at least) - so it'll have to do.
 
 Usage:
 
