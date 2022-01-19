@@ -15,7 +15,7 @@ If you want to use a suggestion, just double click it.
 
 ![image](https://user-images.githubusercontent.com/4972863/150164594-495523ed-8616-4ddd-9e24-72123c4f58ee.png)
 
-Enter the same word on wordle and *double click* the letters that returned yellow or green to change their color, so it matches the wordle result.
+Enter the same word in [wordle](https://www.powerlanguage.co.uk/wordle). Now *double click* the letters that returned yellow or green to change their colors in the helper, so it matches the [wordle](https://www.powerlanguage.co.uk/wordle) result.
 
 ![image](https://user-images.githubusercontent.com/4972863/150165083-040a9476-9117-4f75-b956-a7f83c3e4222.png)
 
