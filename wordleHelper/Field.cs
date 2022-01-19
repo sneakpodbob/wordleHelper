@@ -4,48 +4,14 @@ internal class Field
 {
     private readonly Line[] _lines = { new(), new(), new(), new(), new() };
 
-    public void SetChar(char? c, byte line, byte row)
+    public void SetChar(char? c, byte line, byte column)
     {
-        switch (row)
-        {
-            case 1:
-                _lines[line - 1].C1 = c;
-                break;
-            case 2:
-                _lines[line - 1].C2 = c;
-                break;
-            case 3:
-                _lines[line - 1].C3 = c;
-                break;
-            case 4:
-                _lines[line - 1].C4 = c;
-                break;
-            case 5:
-                _lines[line - 1].C5 = c;
-                break;
-        }
+        _lines[line - 1].SetChar(c, (byte)(column - 1));
     }
 
-    public void SetCondition(FieldColor fieldColor, byte line, byte row)
+    public void SetCondition(FieldColor fieldColor, byte line, byte column)
     {
-        switch (row)
-        {
-            case 1:
-                _lines[line - 1].F1 = fieldColor;
-                break;
-            case 2:
-                _lines[line - 1].F2 = fieldColor;
-                break;
-            case 3:
-                _lines[line - 1].F3 = fieldColor;
-                break;
-            case 4:
-                _lines[line - 1].F4 = fieldColor;
-                break;
-            case 5:
-                _lines[line - 1].F5 = fieldColor;
-                break;
-        }
+        _lines[line - 1].SetFieldColor(fieldColor, (byte)(column - 1));
     }
 
     public IEnumerable<char> GetUnavailableChars()

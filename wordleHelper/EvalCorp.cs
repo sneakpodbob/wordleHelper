@@ -72,29 +72,29 @@ public class EvalCorp
         return sort ? returnList.OrderByDescending(GetSortPointsForWord).ToList() : returnList.ToList();
     }
 
-    public void SetConditionGreen(byte line, byte row)
+    public void SetConditionGreen(byte line, byte column)
     {
-        _field.SetCondition(FieldColor.Green, line, row);
+        _field.SetCondition(FieldColor.Green, line, column);
     }
 
-    public void SetConditionYellow(byte line, byte row)
+    public void SetConditionYellow(byte line, byte column)
     {
-        _field.SetCondition(FieldColor.Yellow, line, row);
+        _field.SetCondition(FieldColor.Yellow, line, column);
     }
 
-    public void SetConditionGray(byte line, byte row)
+    public void SetConditionGray(byte line, byte column)
     {
-        _field.SetCondition(FieldColor.Gray, line, row);
+        _field.SetCondition(FieldColor.Gray, line, column);
     }
 
-    public void UnSetCondition(byte line, byte row)
+    public void UnSetCondition(byte line, byte column)
     {
-        _field.SetCondition(FieldColor.Unset, line, row);
+        _field.SetCondition(FieldColor.Unset, line, column);
     }
 
-    public void SetChar(char? c, byte line, byte row)
+    public void SetChar(char? c, byte line, byte column)
     {
-        _field.SetChar(c, line, row);
+        _field.SetChar(c, line, column);
     }
 
     private static decimal GetSortPointsForWord(string word)
