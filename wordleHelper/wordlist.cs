@@ -1,18 +1,17 @@
-﻿namespace wordleHelper
+﻿namespace wordleHelper;
+
+internal class Wordlist : List<string>
 {
-    internal class Wordlist : List<string>
+    private static Wordlist? _instance;
+
+    private Wordlist()
     {
-        private static Wordlist? _instance;
+        var lines = File.ReadAllLines("words_alpha.txt");
+        AddRange(lines.AsParallel().Where(s => s.Length == 5).Select(s => s.ToLower()).ToList());
+    }
 
-        private Wordlist()
-        {
-            var lines = File.ReadAllLines("words_alpha.txt");
-            AddRange(lines.AsParallel().Where(s => s.Length == 5).Select(s => s.ToLower()).ToList());
-        }
-
-        public static Wordlist CreateInstance()
-        {
-            return _instance ??= new Wordlist();
-        }
+    public static Wordlist CreateInstance()
+    {
+        return _instance ??= new Wordlist();
     }
 }
