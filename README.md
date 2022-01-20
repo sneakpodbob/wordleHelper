@@ -1,6 +1,6 @@
 # wordleHelper
 
-Little Windows-Tool UI-App to cheat when playing [wordle](https://www.powerlanguage.co.uk/wordle).
+Little Windows-App to cheat when playing [wordle](https://www.powerlanguage.co.uk/wordle).
 
 I'm in no way, shape or form associated with the [wordle](https://www.powerlanguage.co.uk/wordle) creator(s) - I'm just a fan who thought it might be a fun project to code a little helper tool, because I'm not a native english speaker and never seem to be able to come up with my next guess..
 
