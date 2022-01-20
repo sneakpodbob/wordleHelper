@@ -7,7 +7,7 @@ I'm in no way, shape or form associated with the [wordle](https://www.powerlangu
 ### Wordlist
 It uses the [word-list](https://github.com/dwyl/english-words/blob/master/words_alpha.txt) from [dwyl/english-words](https://github.com/dwyl/english-words) - it reads the word-list from the included file - if you were to exchange that (keep the same name) it can use your own. The word-list is far from optimal, since it's not the same used in [wordle](https://www.powerlanguage.co.uk/wordle) - so sometimes, some of the suggestions cannot be used in [wordle](https://www.powerlanguage.co.uk/wordle). Their wordlist is not publicly available (AFAIK at least) - so it'll have to do. I removed some of the invalid words that always came out on top for the first suggestion from the list already, but there are many more. 
 
-# Usage:
+# Usage
 
 ![image](https://user-images.githubusercontent.com/4972863/150164375-25c94a70-d8b3-49bc-8207-6eaebb72d8a4.png)
 
@@ -24,3 +24,12 @@ Enter the same word in [wordle](https://www.powerlanguage.co.uk/wordle). Now *do
 Click evaluate again.
 
 Choose a new suggestion and continue until you win (or lose - no guarantee here..)
+
+## Example
+
+If it works it looks like this:
+
+![image](https://user-images.githubusercontent.com/4972863/150304726-2805028e-3ae2-4e39-b960-a8375c772b7c.png)
+
+![image](https://user-images.githubusercontent.com/4972863/150304682-f90fd62e-23ce-46e5-9bf8-968512613503.png)
+
