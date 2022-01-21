@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore wordleHelper/wordleHelper.sln
+      run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore wordleHelper/wordleHelper.sln
+      run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal wordleHelper/wordleHelper.sln
+      run: dotnet test --no-build --verbosity normal
