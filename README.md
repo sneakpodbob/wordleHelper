@@ -8,7 +8,7 @@ Little Windows-App to cheat when playing [wordle](https://www.powerlanguage.co.u
 I'm in no way, shape or form associated with the [wordle](https://www.powerlanguage.co.uk/wordle) creator(s) - I'm just a fan who thought it might be a fun project to code a little helper tool, because I'm not a native english speaker and never seem to be able to come up with my next guess..
 
 ### Wordlist
-It uses the [word-list](https://github.com/dwyl/english-words/blob/master/words_alpha.txt) from [dwyl/english-words](https://github.com/dwyl/english-words) - it reads the word-list from the included file - if you were to exchange that (keep the same name) it can use your own. The word-list is far from optimal, since it's not the same used in [wordle](https://www.powerlanguage.co.uk/wordle) - so sometimes, some of the suggestions cannot be used in [wordle](https://www.powerlanguage.co.uk/wordle). Their wordlist is not publicly available (AFAIK at least) - so it'll have to do. I removed some of the invalid words that always came out on top for the first suggestion from the list already, but there are many more. 
+It uses the the word list extracted from the [source](https://www.powerlanguage.co.uk/wordle/main.c1506a22.js) from [wordle](https://www.powerlanguage.co.uk/wordle) website - it reads the word-list from the included file - if you were to exchange that (keep the same name) it can use your own.
 
 # Usage
 
