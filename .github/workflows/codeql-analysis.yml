@@ -63,7 +63,7 @@ jobs:
     #    uses a compiled language
 
     - run: |
-      dotnet build wordleHelper/wordleHelper.sln
+        dotnet build wordleHelper/wordleHelper.sln
     #   make release
 
     - name: Perform CodeQL Analysis
